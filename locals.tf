@@ -5,6 +5,7 @@ locals {
     Terraform = true
   }
   ami_id = data.aws_ami.joindevops.id
+  vpc_id = data.aws_ssm_parameter.vpc_id.id
   private_subnet_ids = split("," , data.aws_ssm_parameter.private_alb_sg_id.value)[0] #here 0 means we are launching only 1a avalibilty zone
   sg_id = data.aws_ssm_parameter.sg_id.value
   health_check_path = var.component == "frontend" ? "/" : "/health"
